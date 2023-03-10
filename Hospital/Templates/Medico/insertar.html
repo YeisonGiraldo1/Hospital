@@ -1,0 +1,93 @@
+{% include "Inc/header.html" %}
+
+
+<div class="ui container">
+    <h1 style="text-align: center;">Formulario Registro Medico</h1>
+    
+    <form action="" method="POST" class="ui form">
+        {% csrf_token %}
+        <div class="four fields">
+
+            <div class="field">
+                <label for="">Nombre Completo</label>
+                <input type="text" name="nombrecompleto" id="" required>
+            </div>
+
+            <div class="field">
+                <label for="">Email</label>
+                <input type="email" name="email" id="" required>
+            </div>
+
+            
+            <div class="field">
+                <label for="">Celular</label>
+                <input type="number" name="celular" id="" required>
+            </div>
+
+            <div class="field">
+                <label for="">Direccion</label>
+                <input type="text" name="direccion" id="" required>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="three fields">
+
+            <div class="field">
+                <label for="">Edad</label>
+                <input type="number" name="edad" id="" required>
+            </div>
+
+            <div class="field">
+                <label for="">Altura</label>
+                <input type="text" name="altura" id="" required>
+            </div>
+
+            <div class="field">
+                <label for="">Lugar Nacimiento</label>
+                <input type="text" name="lugar_nacimiento" id="" required>
+            </div>
+
+        </div>
+
+
+
+
+
+
+   <div class="three fields">
+
+            <div class="field">
+                <label for="">Fecha Nacimiento</label>
+                <input type="date" name="fecha_nacimiento" id="" required>
+            </div>
+
+            <div class="field">
+                <label for="">Tipo de Medico</label>
+                <input type="text" name="tipo_medico" id="" required>
+            </div>
+
+            <div class="field">
+                <label for="">Tipo de Sangre</label>
+                <input type="text" name="tipo_sangre" id="" required>
+            </div>
+
+        </div>
+
+
+
+<div style="text-align: center;">
+        <button class="ui red button">Guardar Medico</button>
+    </div>
+
+    </form>
+
+    
+</div>
+
+
+
+{% include "Inc/footer.html" %}

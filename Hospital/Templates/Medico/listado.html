@@ -1,0 +1,56 @@
+{% include "Inc/header.html" %}
+{% load static %}
+
+<script src="{% static 'Js/alerta.js' %}"></script>
+
+<div class="ui container">
+<h1 style="text-align: center;">LISTADO EMPLEADOS</h1>
+<table  class="ui red table">
+<thead>
+    <tr>
+    <th>Nombre Completo</th>
+    <th>Email</th>
+    <th>Celular</th>
+    <th>Direccion</th>
+    <th>Edad</th>
+    <th>Altura</th>
+    <th>Lugar Nacimiento</th>
+    <th>Fecha Nacimiento</th>
+    <th>Tipo de Medico</th>
+    <th>Tipo de Sangre</th>
+    <th>Acciones</th>
+</tr>
+</thead>
+
+<tbody>{% for m in medico%}
+    <tr>
+        <td>{{m.NombreCompleto}}</td>
+        <td>{{m.Email}}</td>
+        <td>{{m.Celular}}</td>
+        <td>{{m.Direccion}}</td>
+        <td>{{m.Edad}}</td>
+        <td>{{m.Altura}}</td>
+        <td>{{m.Lugar_Nacimiento}}</td>
+        <td>{{m.Fecha_Nacimiento}}</td>
+        <td>{{m.Tipo_Medico}}</td>
+        <td>{{m.Tipo_Sangre}}</td>
+
+        <td>
+            <a href="/Medico/actualizar/{{ m.id }}"><i class="edit black icon "></i></a>  
+            <a href="#" onclick='borrar("{{m.id}}")'><i class="trash red icon"></i></a>
+        </td>
+    </tr>
+</tbody>
+
+
+{% endfor %}
+</table>
+
+</div>
+
+
+
+
+
+
+{% include "Inc/footer.html" %}

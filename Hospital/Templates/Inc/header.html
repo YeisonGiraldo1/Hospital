@@ -1,0 +1,56 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Css/semantic.css' %}">
+    <script src="{% static 'Js/jquery-3.1.1.min.js'%}"></script>
+    <script src="{% static 'Js/semantic.js' %}"></script>
+    <script src="{% static 'Js/sweetalert.min.js'%}"></script>
+    <script src="{% static 'Js/alerta.js'%}"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+  
+    <div class="ui stackable menu">
+        <div class="item">
+            <img src="{% static 'Img/salud.jpg'%}">
+        </div>
+        <div class="ui dropdown item">
+            Medicos<i class="dropdown icon"></i>
+            <div class="menu">
+                <a href="/Medico/listado" class="item">Listado de
+                        Medicos</a>
+                <a href="/Medico/insertar" class="item">Registrar Medico</a>
+            </div>
+        </div>
+
+
+
+        <div class="ui dropdown item">
+            Hospitales<i class="dropdown icon"></i>
+            <div class="menu">
+                <a href="/Hospital/listado" class="item">Listado de
+                        Hospitales</a>
+                <a href="/Hospital/insertar" class="item">Registrar Hospitales</a>
+            </div>
+        </div>
+
+        <a href="/Usuario/logout" class="item right">Logut</a> 
+        
+
+        <a href="/Usuario/insertar" class="item right">Registrarse</a>
+        <a href="/Usuario/login" class="item right">Iniciar Sesión</a>
+
+
+
+    </div>
+</body>
+{% include "Inc/footer.html" %}
