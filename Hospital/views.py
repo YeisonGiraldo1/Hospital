@@ -48,7 +48,25 @@ def borrarmedico(request,idmedico):
 
 
 
-
+def actualizarmedico(request,idmedico):
+    if request.method == "POST":
+     if request.POST.get('nombrecompleto') and request.POST.get('email') and request.POST.get('celular') and request.POST.get('direccion') and request.POST.get('edad') and request.POST.get('altura') and request.POST.get('lugar_nacimiento') and request.POST.get('fecha_nacimiento') and request.POST.get('tipo_medico') and request.POST.get('tipo_sangre'):
+       medico =Medico.objects.get(id=idmedico)
+       medico.NombreCompleto = request.POST.get('nombrecompleto')
+       medico.Email = request.POST.get('email')
+       medico.Celular= request.POST.get('celular')
+       medico.Direccion = request.POST.get('direccion')
+       medico.Edad = request.POST.get('edad')
+       medico.Altura = request.POST.get('altura')
+       medico.Lugar_Nacimiento = request.POST.get('lugar_nacimiento')
+       medico.Fecha_Nacimiento = request.POST.get('fecha_nacimiento')
+       medico.Tipo_Medico = request.POST.get('tipo_medico')
+       medico.Tipo_Sangre = request.POST.get('tipo_sangre')
+       medico.save()
+       return redirect('/Medico/listado')
+    else:
+       medico = Medico.objects.filter(id=idmedico)
+       return render(request,'Medico/actualizar.html',{'medico':medico})
 #endregion
 
 

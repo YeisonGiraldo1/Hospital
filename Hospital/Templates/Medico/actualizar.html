@@ -1,0 +1,95 @@
+{% include "Inc/header.html" %}
+
+{% for m in medico%}
+
+
+<div class="ui container">
+    <h1 style="text-align: center;">Formulario Actualizacion Medico</h1>
+    
+    <form action="" method="POST" class="ui form">
+        {% csrf_token %}
+        <div class="four fields">
+
+            <div class="field">
+                <label for="">Nombre Completo</label>
+                <input type="text" name="nombrecompleto" id="" value="{{ m.NombreCompleto}}" required>
+            </div>
+
+            <div class="field">
+                <label for="">Email</label>
+                <input type="email" name="email" id=""  value="{{ m.Email}}" required>
+            </div>
+
+            
+            <div class="field">
+                <label for="">Celular</label>
+                <input type="number" name="celular" id="" value="{{ m.Celular}}" required>
+            </div>
+
+            <div class="field">
+                <label for="">Direccion</label>
+                <input type="text" name="direccion" id="" value="{{ m.Direccion}}" required>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="three fields">
+
+            <div class="field">
+                <label for="">Edad</label>
+                <input type="number" name="edad" id="" value="{{ m.Edad}}" required>
+            </div>
+
+            <div class="field">
+                <label for="">Altura</label>
+                <input type="text" name="altura" id="" value="{{ m.Altura}}" required>
+            </div>
+
+            <div class="field">
+                <label for="">Lugar Nacimiento</label>
+                <input type="text" name="lugar_nacimiento" id="" value="{{ m.Lugar_Nacimiento}}" required>
+            </div>
+
+        </div>
+
+
+
+
+
+
+   <div class="three fields">
+
+            <div class="field">
+                <label for="">Fecha Nacimiento</label>
+                <input type="date" name="fecha_nacimiento" value="{{ m.Fecha_Nacimiento}}" id="" required>
+            </div>
+
+            <div class="field">
+                <label for="">Tipo de Medico</label>
+                <input type="text" name="tipo_medico" id="" value="{{ m.Tipo_Medico}}" required>
+            </div>
+
+            <div class="field">
+                <label for="">Tipo de Sangre</label>
+                <input type="text" name="tipo_sangre" id="" value="{{ m.Tipo_Sangre}}" required>
+            </div>
+
+        </div>
+
+
+
+<div style="text-align: center;">
+        <button class="ui red button">Actualizar Medico</button>
+    </div>
+
+    </form>
+    {% endfor %}
+    
+</div>
+
+
+
+{% include "Inc/footer.html" %}
