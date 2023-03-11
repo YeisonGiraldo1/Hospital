@@ -70,3 +70,19 @@ def actualizarmedico(request,idmedico):
 #endregion
 
 
+
+#region Hospital
+
+
+
+def insertarhospital(request):
+    if request.method == "POST":
+     if request.POST.get('nombrehospital') and request.POST.get('direccion') and request.POST.get('ciudad') and request.POST.get('nivel') and request.POST.get('telefono') and request.POST.get('medico_id'):
+         #prepare
+        insertar = connection.cursor()
+        insertar.execute("call insertarhospital('"+request.POST.get ('nombrehospital')+"','"+request.POST.get ('direccion')+"','"+request.POST.get ('ciudad')+"','"+request.POST.get ('nivel')+"','"+request.POST.get ('telefono')+"','"+request.POST.get ('medico_id')+"')")
+        return redirect('/Hospital/listado')
+    else:
+        medicos = Medico.objects.all()
+        return render(request,'Hospital/insertar.html',{'medicos':medicos})
+#endregion

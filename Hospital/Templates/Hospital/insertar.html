@@ -1,0 +1,62 @@
+{% include "Inc/header.html" %}
+
+
+<div class="ui container">
+    <h1 style="text-align: center;">Formulario Registro Hospital</h1>
+
+    <form action="" method="POST" class="ui form">
+        {% csrf_token %}
+        <div class="three fields">
+            <div class="field">
+                <label for="">Nombre Hospital</label>
+                <input type="text" name="nombrehospital" id="" required>
+            </div>
+            <div class="field">
+                <label for="">Direccion</label>
+                <input type="text" name="direccion" id="" required>
+            </div>
+
+            <div class="field">
+                <label for="">Ciudad</label>
+                <input type="text" name="ciudad" id="" required>
+            </div>
+        </div>
+
+
+
+            <div class="three fields">
+            <div class="field">
+                <label for="">Nivel</label>
+                <input type="text" name="nivel" id="" required>
+            </div>
+
+            <div class="field">
+                <label for="">Telefono</label>
+                <input type="number" name="telefono" id="" required>
+            </div>
+
+
+            <div class="field">
+                <label for="">Seleccionar Medico</label>
+                <select name="medico_id" id="">
+                    {% for m in medicos %}
+<option value="{{ m.id }}">{{ m.NombreCompleto }}</option>
+{% endfor %}
+                </select>
+            </div>
+        </div>
+
+
+
+
+<div style="text-align: center;">
+        <button class="ui red button">Guardar Hospital</button>
+        
+    </div>
+
+    </form>
+</div>
+
+
+
+{% include "Inc/footer.html" %}

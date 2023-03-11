@@ -13,3 +13,14 @@ class Medico(models.Model):
     Tipo_Sangre = models.CharField(max_length=255)
     class Meta:
       db_table = 'medico'
+
+
+class Hospital(models.Model):
+    Nombre = models.CharField(max_length=255)
+    DireccionH = models.CharField(max_length=255)
+    Ciudad = models.CharField(max_length=255)
+    Nivel = models.CharField(max_length=255)
+    Telefono = models.CharField(max_length=255)
+    medico = models.ForeignKey(Medico,on_delete=models.PROTECT)
+    class Meta:
+      db_table = 'hospital'
