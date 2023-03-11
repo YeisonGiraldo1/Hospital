@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Hospital.views import insertarmedico,listadomedico,borrarmedico,actualizarmedico
-from Hospital.views import insertarhospital
+from Hospital.views import insertarhospital,listadohospital,borrarhospital,actualizarhospital
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Medico/insertar',insertarmedico),
@@ -24,6 +24,9 @@ urlpatterns = [
     path('Medico/borrar/<int:idmedico>',borrarmedico),
     path('Medico/actualizar/<int:idmedico>',actualizarmedico),
 
-    path('Hospital/insertar',insertarhospital)
+    path('Hospital/insertar',insertarhospital),
+    path('Hospital/listado',listadohospital),
+    path('Hospital/borrar/<int:id>',borrarhospital),
+    path('Hospital/actualizar/<str:idhospital>',actualizarhospital)
 
 ]

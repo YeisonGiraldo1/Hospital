@@ -1,4 +1,4 @@
-function borrar1(id){
+function borrar(id){
     swal({
   title: "Estas seguro que quieres borrar?",
   text: "La informacion que borres no la puedes recuperar!",
@@ -8,7 +8,7 @@ function borrar1(id){
 })
 .then((willDelete) => {
   if (willDelete) {
-    location.href = "/Medico/borrar/" + id;
+    location.href = "/Hospital/borrar/" + id;
     swal("Se ha borrado exitosamente!", {
       icon: "success",
     });

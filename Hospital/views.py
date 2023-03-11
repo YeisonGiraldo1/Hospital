@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.template import Template, Context
 from django.shortcuts import render,redirect
 from Hospital.models import Medico
+from Hospital.models import Hospital
 from django.db import connection
 from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate,login,logout
@@ -85,4 +86,38 @@ def insertarhospital(request):
     else:
         medicos = Medico.objects.all()
         return render(request,'Hospital/insertar.html',{'medicos':medicos})
+    
+
+
+
+
+def listadohospital(request):
+        listado = connection.cursor()
+        listado.execute("call listadohospital")
+        return render(request, 'Hospital/listado.html', {'hospital': listado})
+
+
+
+
+def borrarhospital(request,id):
+    with connection.cursor() as cursor:
+        cursor.callproc('borrarhospital', [id])
+    return redirect('/Hospital/listado')
+
+
+def actualizarhospital(request,idhospital):
+     if request.method =="POST":
+        if request.POST.get('nombrehospital') and request.POST.get('direccion') and request.POST.get('ciudad') and request.POST.get('nivel') and request.POST.get('telefono') and request.POST.get('medico_id'):
+            hospital = Hospital.objects.get(id=idhospital)
+            actualizar = connection.cursor()
+            actualizar.execute("call actualizarhospital('" + idhospital +"', '"+ request.POST.get('nombrehospital')  +"','"
+            +  request.POST.get('direccion') +"','" + request.POST.get('ciudad') +"','" + request.POST.get('nivel') +"','" + request.POST.get('telefono') +"','" + request.POST.get('medico_id') +"') ")
+            return redirect('/Hospital/listado')
+     else:
+        medicos = Medico.objects.all()
+        hospital = Hospital.objects.filter(id=idhospital)
+        return render(request, 'Hospital/actualizar.html', {'hospital' : hospital, 'medicos' : medicos})
+
+
+  
 #endregion

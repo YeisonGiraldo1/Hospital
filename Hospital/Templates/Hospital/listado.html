@@ -1,0 +1,41 @@
+{% include "Inc/header.html" %}
+{% load static %}
+
+
+
+
+<div class="ui container">
+<h1 style="text-align: center;">LISTADO HOSPITALES</h1>
+<table  class="ui red table">
+<thead>
+    <tr>
+    <th>Nombre Hospital</th>
+    <th>Direccion</th>
+    <th>Ciudad</th>
+    <th>Nivel</th>
+    <th>Telefono</th>
+    <th>NombreMedico</th>
+    <th>Acciones</th>
+</tr>
+</thead>
+
+<tbody>{% for h in hospital%}
+    <tr>
+        <td>{{h.1}}</td>
+        <td>{{h.2}}</td>
+        <td>{{h.3}}</td>
+        <td>{{h.4}}</td>
+        <td>{{h.5}}</td>
+        <td>{{h.6}}</td>
+        <td>
+          <a href="/Hospital/actualizar/{{ h.0 }}"><i class="edit black icon"></i></a> 
+            <a href="#" onclick='borrar("{{h.0}}")'><i class="trash red icon"></i></a>
+        </td>
+    </tr>
+</tbody>
+
+
+{% endfor %}
+</table>
+
+</div>

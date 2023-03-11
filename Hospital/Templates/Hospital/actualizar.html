@@ -1,0 +1,64 @@
+{% include "Inc/header.html" %}
+{% for h in hospital %}
+
+<div class="ui container">
+    <h1 style="text-align: center;">Formulario Actualizacion Proveedor</h1>
+
+    <form action="" method="POST" class="ui form">
+        {% csrf_token %}
+        <div class="three fields">
+            <div class="field">
+                <label for="">Nombre Hospital</label>
+                <input type="text" name="nombrehospital" id="" value="{{h.Nombre}}" required>
+            </div>
+            <div class="field">
+                <label for="">Direccion</label>
+                <input type="text" name="direccion" id="" value="{{h.DireccionH}}" required>
+            </div>
+
+            <div class="field">
+                <label for="">Ciudad</label>
+                <input type="text" name="ciudad" id="" value="{{h.Ciudad}}" required>
+            </div>
+        </div>
+
+
+
+
+<div class="three fields">
+            <div class="field">
+                <label for="">Nivel</label>
+                <input type="text" name="nivel" id="" value="{{h.Nivel}}" required>
+            </div>
+
+            <div class="field">
+                <label for="">Telefono</label>
+                <input type="number" name="telefono" id="" value="{{h.Telefono}}" required>
+            </div>
+
+           
+            <div class="field">
+                <label for="">Selecciona empleado</label>
+                <select name="medico_id" id="">
+                    {% for m in medicos %}   
+<option value="{{ m.id }}">{{ m.NombreCompleto}}</option>
+{% endfor %}
+                </select>
+               
+           
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+<div style="text-align: center;">
+        <button class="ui green button">Actualizar Hospital</button>
+    </div>
+
+    </form>
+</div>
+
+
+{% include "Inc/footer.html" %}
