@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from Hospital.views import insertarmedico,listadomedico,borrarmedico,actualizarmedico
 from Hospital.views import insertarhospital,listadohospital,borrarhospital,actualizarhospital
+from Hospital.views import insertarusuario,loginusuario,logoutusuario
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Medico/insertar',insertarmedico),
@@ -27,6 +28,10 @@ urlpatterns = [
     path('Hospital/insertar',insertarhospital),
     path('Hospital/listado',listadohospital),
     path('Hospital/borrar/<int:id>',borrarhospital),
-    path('Hospital/actualizar/<str:idhospital>',actualizarhospital)
+    path('Hospital/actualizar/<str:idhospital>',actualizarhospital),
+
+    path('Usuario/insertar',insertarusuario),
+    path('Usuario/login',loginusuario),
+    path('Usuario/logout',logoutusuario)
 
 ]

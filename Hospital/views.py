@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate,login,logout
 
 
 def listadomedico(request):
+    if not request.user.is_authenticated:
+        return redirect('/Usuario/login')
     paginalistado = open('Hospital/Templates/Medico/listado.html')
     lectura = Template(paginalistado.read())
     paginalistado.close()
@@ -22,6 +24,8 @@ def listadomedico(request):
 
 
 def insertarmedico(request):
+    if not request.user.is_authenticated:
+        return redirect('/Usuario/login')
     if request.method == "POST":
      if request.POST.get('nombrecompleto') and request.POST.get('email') and request.POST.get('direccion') and request.POST.get('celular') and request.POST.get('edad') and request.POST.get('altura') and request.POST.get('lugar_nacimiento') and request.POST.get('fecha_nacimiento') and request.POST.get('tipo_medico') and request.POST.get('tipo_sangre'):
         medico = Medico()
@@ -77,6 +81,8 @@ def actualizarmedico(request,idmedico):
 
 
 def insertarhospital(request):
+    if not request.user.is_authenticated:
+        return redirect('/Usuario/login')
     if request.method == "POST":
      if request.POST.get('nombrehospital') and request.POST.get('direccion') and request.POST.get('ciudad') and request.POST.get('nivel') and request.POST.get('telefono') and request.POST.get('medico_id'):
          #prepare
@@ -92,9 +98,11 @@ def insertarhospital(request):
 
 
 def listadohospital(request):
-        listado = connection.cursor()
-        listado.execute("call listadohospital")
-        return render(request, 'Hospital/listado.html', {'hospital': listado})
+    if not request.user.is_authenticated:
+        return redirect('/Usuario/login') 
+    listado = connection.cursor()
+    listado.execute("call listadohospital")
+    return render(request, 'Hospital/listado.html', {'hospital': listado})
 
 
 
@@ -120,4 +128,46 @@ def actualizarhospital(request,idhospital):
 
 
   
+#endregion
+
+
+
+#region usuario
+def insertarusuario(request):
+    if request.method == "POST":
+     if request.POST.get('username') and request.POST.get('password') and request.POST.get('nombres') and request.POST.get('apellidos') and request.POST.get('email') :
+        
+        usuario = User.objects.create_user(username=request.POST.get('username'),email=request.POST.get('email'),password=request.POST.get('password'),first_name= request.POST.get('nombres'),last_name=request.POST.get('apellidos') )
+      
+         
+        usuario.save()
+        return redirect('/Usuario/login')
+    else:
+        return render(request,'Usuario/insertar.html')
+    
+
+
+
+
+
+def loginusuario(request):
+    if request.method == "POST":
+     if request.POST.get('username') and request.POST.get('password'):
+        user = authenticate(username= request.POST.get('username'),password= request.POST.get('password'))  
+        if user is not None:
+           login(request,user)
+           return redirect('/Medico/listado')
+        else:
+           mensaje = "Usuario  o Cotraseña incorrecta,Intenta de Nuevo"
+           return render(request,'Usuario/login.html',{'mensaje':mensaje})
+    else:
+        return render(request,'Usuario/login.html')
+
+
+
+
+def logoutusuario(request):
+    logout(request)
+    return redirect('/Usuario/login')
+ 
 #endregion
