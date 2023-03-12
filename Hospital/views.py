@@ -6,7 +6,7 @@ from Hospital.models import Hospital
 from django.db import connection
 from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate,login,logout
-
+from django.contrib.auth.decorators import login_required
 
 #region Medico
 
@@ -170,4 +170,28 @@ def logoutusuario(request):
     logout(request)
     return redirect('/Usuario/login')
  
+
+def actualizarusuario(request,iduser):
+    user = request.user
+    if request.method == 'POST':
+     if request.POST.get('username') and request.POST.get('password') and request.POST.get('nombres') and request.POST.get('apellidos') and  request.POST.get('email'):
+      user =User.objects.get(id=iduser)
+      user.username = request.POST.get('username')
+      user.password = request.POST.get('password')
+      user.first_name = request.POST.get('nombres')
+      user.last_name = request.POST.get('apellidos')
+      user.email = request.POST.get('email')
+      user.save()
+      return redirect('/Usuario/actualizar/')
+    else:
+      user = User.objects.filter(id=iduser)
+      return render(request,'Usuario/actualizar.html',{'user':user})
+    
+
+
+def borrarusuario(request,iduser):
+    user = User.objects.get(id=iduser)
+    user.delete()
+    return redirect('/Usuario/insertar')
+
 #endregion
