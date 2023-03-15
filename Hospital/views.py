@@ -156,7 +156,7 @@ def loginusuario(request):
         user = authenticate(username= request.POST.get('username'),password= request.POST.get('password'))  
         if user is not None:
            login(request,user)
-           return redirect('/Medico/listado')
+           return redirect('/Medico/insertar')
         else:
            mensaje = "Usuario  o Cotraseña incorrecta,Intenta de Nuevo"
            return render(request,'Usuario/login.html',{'mensaje':mensaje})

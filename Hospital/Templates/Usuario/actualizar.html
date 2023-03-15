@@ -36,9 +36,9 @@
         </div>
 
         <div style="text-align: center;">
-            <button class="ui green button">Actualizar Usuario</button>
+            <button class="ui green button" id="boton">Actualizar Usuario</button>
             
-            <button class="ui red button" onclick='borrarusuario("{{u.id}}")'>Eliminar Cuenta<i class="trash black icon"></i></button>
+            <button class="ui red button"  onclick='borrarusuario("{{u.id}}")'>Eliminar Cuenta<i class="trash black icon"></i></button>
         </div>
 
     </form>
@@ -71,6 +71,12 @@
 }
 </script>
     
+
+<script>
+    document.getElementById("boton").addEventListener("click", function() {
+      swal("¡Datos actualizados correctamente!");
+    });
+  </script>
 
 
 
