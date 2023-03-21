@@ -33,7 +33,7 @@ urlpatterns = [
     path('Usuario/insertar',insertarusuario),
     path('Usuario/login',loginusuario),
     path('Usuario/logout',logoutusuario),
-    path('Usuario/actualizar/<int:iduser>',actualizarusuario),
-    path('Usuario/borrar/<int:iduser>',borrarusuario)
+    path('Usuario/actualizar/<int:user_id>',actualizarusuario),
+    path('Usuario/borrar/<int:user_id>',borrarusuario)
 
 ]

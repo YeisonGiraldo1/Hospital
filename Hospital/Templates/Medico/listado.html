@@ -1,76 +1,74 @@
-{% include "Inc/header.html" %}
-{% load static %}
+{% include "Inc/header.html" %} {% load static %}
 
 <script src="{% static 'Js/alerta-medico.js'%}"></script>
 
 <div class="ui container">
-<h1 style="text-align: center;">LISTADO MEDICOS</h1>
-<table  class="ui red table">
-<thead>
-    <tr>
-    <th>Nombre Completo</th>
-    <th>Email</th>
-    <th>Celular</th>
-    <th>Direccion</th>
-    <th>Edad</th>
-    <th>Altura</th>
-    <th>Lugar Nacimiento</th>
-    <th>Fecha Nacimiento</th>
-    <th>Tipo de Medico</th>
-    <th>Tipo de Sangre</th>
-    <th>Acciones</th>
-</tr>
-</thead>
+    <h1 style="text-align: center;">LISTADO MEDICOS</h1>
+    <table class="ui red table">
+        <thead>
+            <tr>
+                <th>Nombre Completo</th>
+                <th>Email</th>
+                <th>Celular</th>
+                <th>Direccion</th>
+                <th>Edad</th>
+                <th>Altura</th>
+                <th>Lugar Nacimiento</th>
+                <th>Fecha Nacimiento</th>
+                <th>Tipo de Medico</th>
+                <th>Tipo de Sangre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
 
-<tbody>{% for m in medico%}
-    <tr>
-        <td>{{m.NombreCompleto}}</td>
-        <td>{{m.Email}}</td>
-        <td>{{m.Celular}}</td>
-        <td>{{m.Direccion}}</td>
-        <td>{{m.Edad}}</td>
-        <td>{{m.Altura}}</td>
-        <td>{{m.Lugar_Nacimiento}}</td>
-        <td>{{m.Fecha_Nacimiento}}</td>
-        <td>{{m.Tipo_Medico}}</td>
-        <td>{{m.Tipo_Sangre}}</td>
+        <tbody>{% for m in medico%}
+            <tr>
+                <td>{{m.NombreCompleto}}</td>
+                <td>{{m.Email}}</td>
+                <td>{{m.Celular}}</td>
+                <td>{{m.Direccion}}</td>
+                <td>{{m.Edad}}</td>
+                <td>{{m.Altura}}</td>
+                <td>{{m.Lugar_Nacimiento}}</td>
+                <td>{{m.Fecha_Nacimiento}}</td>
+                <td>{{m.Tipo_Medico}}</td>
+                <td>{{m.Tipo_Sangre}}</td>
 
-        <td>
-            <a href="/Medico/actualizar/{{ m.id }}"><i class="edit black icon "></i></a>  
-            <a href="#" onclick='borrar1("{{m.id}}")'><i class="trash red icon"></i></a>
-        </td>
-    </tr>
-</tbody>
+                <td>
+                    <a href="/Medico/actualizar/{{ m.id }}"><i class="edit black icon "></i></a>
+                    <a href="#" onclick='borrar1("{{m.id}}")'><i class="trash red icon"></i></a>
+                </td>
+            </tr>
+        </tbody>
 
 
-{% endfor %}
-</table>
+        {% endfor %}
+    </table>
 
 </div>
 
 
 <script>
-    function borrar1(id){
-    swal({
-  title: "Estas seguro que quieres borrar?",
-  text: "La informacion que borres no la puedes recuperar!",
-  icon: "warning",
-  buttons: ["Cancelar", true],
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    location.href = "/Medico/borrar/" + id;
-    swal("Se ha borrado exitosamente!", {
-      icon: "success",
-    });
+    function borrar1(id) {
+        swal({
+                title: "Estas seguro que quieres borrar?",
+                text: "La informacion que borres no la puedes recuperar!",
+                icon: "warning",
+                buttons: ["Cancelar", true],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    location.href = "/Medico/borrar/" + id;
+                    swal("Se ha borrado exitosamente!", {
+                        icon: "success",
+                    });
 
-  } else {
-    swal("la informacion no se va a borrar!");
-  }
-});
-}
-
+                } else {
+                    swal("la informacion no se va a borrar!");
+                }
+            });
+    }
 </script>
 
 

@@ -1,6 +1,4 @@
-{% include "Inc/header.html" %}
-
-{% for u in user%}
+{% include "Inc/header.html" %} {% for u in user%}
 
 <div class="ui container">
     <h1 style="text-align: center;">Actualizar datos perfil</h1>
@@ -10,11 +8,11 @@
         <div class="two fields">
             <div class="field">
                 <label for="">Nombre De usuario</label>
-                <input type="text" name="username" id=""  value="{{u.username}}" required>
+                <input type="text" name="username" id="" value="{{u.username}}" required>
             </div>
             <div class="field">
                 <label for="">Password</label>
-                <input type="password" name="password" id=""  value="{{u.password}}" required>
+                <input type="password" name="password" id="" value="{{u.password}}" required>
             </div>
         </div>
 
@@ -35,45 +33,25 @@
             </div>
         </div>
 
+
+        {% endfor %}
+
         <div style="text-align: center;">
             <button class="ui green button">Actualizar Usuario</button>
-            
-            <button class="ui red button" onclick='borrarusuario("{{u.id}}")'>Eliminar Cuenta<i class="trash black icon"></i></button>
+
+
         </div>
 
     </form>
 
 
-    {% endfor %}
 </div>
 
 
-<script>
-    function borrarusuario(id){
-    swal({
-  title: "Estas seguro que quieres borrar tu cuenta?",
-  text: "Si borras la cuenta, no podras recuperarla y deberas crear una nueva!",
-  icon: "warning",
-  buttons: ["Cancelar", true],
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    location.href = "/Usuario/borrar/" + id;
-    swal("Tu cuenta se ha borrado exitosamente!", {
-      icon: "success",
-    });
-
-  } else {
-    swal("Tu cuenta no se va a borrar!");
-  }
-});
-}
-</script>
-    
 
 
 
 
 
-{% include "Inc/footer.html" %} {% include "Inc/footer.html" %}
+
+{% include "Inc/footer.html" %}

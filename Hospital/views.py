@@ -156,7 +156,7 @@ def loginusuario(request):
         user = authenticate(username= request.POST.get('username'),password= request.POST.get('password'))  
         if user is not None:
            login(request,user)
-           return redirect('/Medico/listado')
+           return redirect('/Medico/insertar')
         else:
            mensaje = "Usuario  o Cotraseña incorrecta,Intenta de Nuevo"
            return render(request,'Usuario/login.html',{'mensaje':mensaje})
@@ -171,27 +171,34 @@ def logoutusuario(request):
     return redirect('/Usuario/login')
  
 
-def actualizarusuario(request,iduser):
+def actualizarusuario(request, user_id):
     user = request.user
     if request.method == 'POST':
-     if request.POST.get('username') and request.POST.get('password') and request.POST.get('nombres') and request.POST.get('apellidos') and  request.POST.get('email'):
-      user =User.objects.get(id=iduser)
-      user.username = request.POST.get('username')
-      user.password = request.POST.get('password')
-      user.first_name = request.POST.get('nombres')
-      user.last_name = request.POST.get('apellidos')
-      user.email = request.POST.get('email')
-      user.save()
-      return redirect('/Usuario/actualizar/')
+        if request.POST.get('username') and request.POST.get('password') and request.POST.get('nombres') and request.POST.get('apellidos') and request.POST.get('email'):
+            user = User.objects.get(id=user_id)
+            user.username = request.POST.get('username')
+            user.password = request.POST.get('password')
+            user.first_name = request.POST.get('nombres')
+            user.last_name = request.POST.get('apellidos')
+            user.email = request.POST.get('email')
+            user.save()
+            return redirect("/Usuario/actualizar/")
     else:
-      user = User.objects.filter(id=iduser)
-      return render(request,'Usuario/actualizar.html',{'user':user})
+        # verificar si el usuario en sesión coincide con el usuario que se está actualizando
+        if str(user.id) != str(user_id):
+            # si no coincide, redireccionar al usuario a una página de error o a la página de inicio
+            return redirect('/Usuario/login')
+        else:
+            user = User.objects.filter(id=user_id)
+            return render(request, 'Usuario/actualizar.html', {'user': user})
+
     
 
 
-def borrarusuario(request,iduser):
-    user = User.objects.get(id=iduser)
-    user.delete()
+
+def borrarusuario(request,user_id):
+    medico = User.objects.get(id=user_id)
+    medico.delete()
     return redirect('/Usuario/insertar')
 
 #endregion

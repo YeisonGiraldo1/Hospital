@@ -1,6 +1,4 @@
-
-{% load static %}
-
+ {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +18,14 @@
 
 <body>
 
-  
+
     <div class="ui stackable menu">
         <div class="item">
             <img src="{% static 'Img/salud.jpg'%}">
         </div>
+
+
+
         <div class="ui dropdown item">
             Medicos<i class="dropdown icon"></i>
             <div class="menu">
@@ -44,18 +45,58 @@
                 <a href="/Hospital/insertar" class="item">Registrar Hospitales</a>
             </div>
         </div>
-        
+
+        {% if user.is_authenticated %}
+
+        <div class="ui dropdown item">
+            Perfil<i class="dropdown icon"></i>
+            <div class="menu">
+                <a href="/Usuario/actualizar/{{user.id}}" class="item right">Editar Perfil</a>
+                <a href="#" onclick='borrarusuario("{{user.id}}")' class="item">Eliminar Cuenta</a>
+            </div>
+        </div>
+
+
+
+
+
+        <a href="/Usuario/logout" class="item right">Logut</a> {% else %}
+
+
+
+
+
+
         <a href="/Usuario/insertar" class="item right">Registrarse</a>
-        <a href="/Usuario/login" class="item right">Iniciar Sesión</a>
-
-
-     
-        <a href="/Usuario/actualizar/{{ u.id}}" class="item right">Actualizar Perfil</a>
-       
-        <a href="/Usuario/logout" class="item right">Logut</a> 
-
-
+        <a href="/Usuario/login" class="item right">Iniciar Sesión</a> {% endif %}
 
     </div>
+
 </body>
+
+
+
+
+<script>
+    function borrarusuario(id) {
+        swal({
+                title: "Estas seguro que quieres borrar tu cuenta?",
+                text: "Si borras la cuenta, no podras recuperarla y deberas crear una nueva!",
+                icon: "warning",
+                buttons: ["Cancelar", true],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    location.href = "/Usuario/borrar/" + id;
+                    swal("Tu cuenta se ha borrado exitosamente!", {
+                        icon: "success",
+                    });
+
+                } else {
+                    swal("Tu cuenta no se va a borrar!");
+                }
+            });
+    }
+</script>
 {% include "Inc/footer.html" %}
