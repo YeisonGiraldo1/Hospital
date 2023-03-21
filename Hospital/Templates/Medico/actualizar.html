@@ -1,11 +1,9 @@
-{% include "Inc/header.html" %}
-
-{% for m in medico%}
+{% include "Inc/header.html" %} {% for m in medico%}
 
 
 <div class="ui container">
     <h1 style="text-align: center;">Formulario Actualizacion Medico</h1>
-    
+
     <form action="" method="POST" class="ui form">
         {% csrf_token %}
         <div class="four fields">
@@ -17,10 +15,10 @@
 
             <div class="field">
                 <label for="">Email</label>
-                <input type="email" name="email" id=""  value="{{ m.Email}}" required>
+                <input type="email" name="email" id="" value="{{ m.Email}}" required>
             </div>
 
-            
+
             <div class="field">
                 <label for="">Celular</label>
                 <input type="number" name="celular" id="" value="{{ m.Celular}}" required>
@@ -60,7 +58,7 @@
 
 
 
-   <div class="three fields">
+        <div class="three fields">
 
             <div class="field">
                 <label for="">Fecha Nacimiento</label>
@@ -68,7 +66,7 @@
             </div>
 
             <div class="field">
-                <label for="">Tipo de Medico</label>
+                <label for="">Tipo  Medico</label>
                 <input type="text" name="tipo_medico" id="" value="{{ m.Tipo_Medico}}" required>
             </div>
 
@@ -81,13 +79,13 @@
 
 
 
-<div style="text-align: center;">
-        <button class="ui red button">Actualizar Medico</button>
-    </div>
+        <div style="text-align: center;">
+            <button class="ui red button">Actualizar Medico</button>
+        </div>
 
     </form>
     {% endfor %}
-    
+
 </div>
 
 
