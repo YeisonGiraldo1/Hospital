@@ -18,6 +18,7 @@ from django.urls import path
 from Hospital.views import insertarmedico,listadomedico,borrarmedico,actualizarmedico
 from Hospital.views import insertarhospital,listadohospital,borrarhospital,actualizarhospital
 from Hospital.views import insertarusuario,loginusuario,logoutusuario,actualizarusuario,borrarusuario
+from Hospital.views import error
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Medico/insertar',insertarmedico),
@@ -34,6 +35,10 @@ urlpatterns = [
     path('Usuario/login',loginusuario),
     path('Usuario/logout',logoutusuario),
     path('Usuario/actualizar/<int:user_id>',actualizarusuario),
-    path('Usuario/borrar/<int:user_id>',borrarusuario)
+    path('Usuario/borrar/<int:user_id>',borrarusuario),
+
+    path('Error/paginaerror',error)
+
+
 
 ]

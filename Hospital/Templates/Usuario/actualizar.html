@@ -1,5 +1,4 @@
-{% include "Inc/header.html" %} {% for u in user%}
-
+{% include "Inc/header.html" %}
 <div class="ui container">
     <h1 style="text-align: center;">Actualizar datos perfil</h1>
 
@@ -8,11 +7,11 @@
         <div class="two fields">
             <div class="field">
                 <label for="">Nombre De usuario</label>
-                <input type="text" name="username" id="" value="{{u.username}}" required>
+                <input type="text" name="username" id="" value="{{user.username}}" required>
             </div>
             <div class="field">
                 <label for="">Password</label>
-                <input type="password" name="password" id="" value="{{u.password}}" required>
+                <input type="password" name="password" id="" value="{{user.password}}" required>
             </div>
         </div>
 
@@ -21,20 +20,20 @@
         <div class="three fields">
             <div class="field">
                 <label for="">Nombres</label>
-                <input type="text" name="nombres" id="" value="{{u.first_name}}" required>
+                <input type="text" name="nombres" id="" value="{{user.first_name}}" required>
             </div>
             <div class="field">
                 <label for="">Apellidos</label>
-                <input type="text" name="apellidos" id="" value="{{u.last_name}}" required>
+                <input type="text" name="apellidos" id="" value="{{user.last_name}}" required>
             </div>
             <div class="field">
                 <label for="">Email</label>
-                <input type="email" name="email" id="" value="{{u.email}}" required>
+                <input type="email" name="email" id="" value="{{user.email}}" required>
             </div>
         </div>
 
 
-        {% endfor %}
+
 
         <div style="text-align: center;">
             <button class="ui green button">Actualizar Usuario</button>
