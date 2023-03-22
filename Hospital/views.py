@@ -7,6 +7,7 @@ from django.db import connection
 from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 #region Medico
 
@@ -175,21 +176,23 @@ def actualizarusuario(request, user_id):
     user = request.user
     if request.method == 'POST':
         if request.POST.get('username') and request.POST.get('password') and request.POST.get('nombres') and request.POST.get('apellidos') and request.POST.get('email'):
-            user = User.objects.get(id=user_id)
+            user= User.objects.get(id=user_id)
             user.username = request.POST.get('username')
             user.password = request.POST.get('password')
             user.first_name = request.POST.get('nombres')
             user.last_name = request.POST.get('apellidos')
             user.email = request.POST.get('email')
             user.save()
-            return redirect("/Usuario/actualizar/")
+            #mensaje cuando actualice los datos
+            messages.success(request, 'Datos actualizados correctamente.')
+            return redirect(f"/Usuario/actualizar/{user.id}")
     else:
         # verificar si el usuario en sesión coincide con el usuario que se está actualizando
         if str(user.id) != str(user_id):
             # si no coincide, redireccionar al usuario a una página de error o a la página de inicio
             return redirect('/Usuario/login')
         else:
-            user = User.objects.filter(id=user_id)
+            user= User.objects.filter(id=user_id)
             return render(request, 'Usuario/actualizar.html', {'user': user})
 
     

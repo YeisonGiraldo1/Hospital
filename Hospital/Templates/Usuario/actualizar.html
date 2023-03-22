@@ -1,6 +1,18 @@
-{% include "Inc/header.html" %} {% for u in user%}
+{% include "Inc/header.html" %} 
+
+
+
+
+{% if messages %}
+  {% for message in messages %}
+    <div id="mensaje"  class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
+{% for u in user%}
 
 <div class="ui container">
+   
     <h1 style="text-align: center;">Actualizar datos perfil</h1>
 
     <form action="" method="POST" class="ui form">
@@ -37,7 +49,7 @@
         {% endfor %}
 
         <div style="text-align: center;">
-            <button class="ui green button">Actualizar Usuario</button>
+            <button   class="ui green button">Actualizar Usuario</button>
 
 
         </div>
@@ -46,7 +58,6 @@
 
 
 </div>
-
 
 
 
