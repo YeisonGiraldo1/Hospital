@@ -8,20 +8,23 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.template import loader
 
 #region Medico
+
 
 
 def listadomedico(request):
     if not request.user.is_authenticated:
         return redirect('/Usuario/login')
-    paginalistado = open('Hospital/Templates/Medico/listado.html')
-    lectura = Template(paginalistado.read())
-    paginalistado.close()
     medico = Medico.objects.all()
-    parametros = Context({'medico':medico})
-    paginafinal = lectura.render(parametros)
-    return HttpResponse(paginafinal)
+    template = loader.get_template('Medico/listado.html')
+    context = {
+        'medico': medico,
+        'user': request.user
+    }
+    return HttpResponse(template.render(context, request))
+
 
 
 def insertarmedico(request):
@@ -170,10 +173,13 @@ def loginusuario(request):
 def logoutusuario(request):
     logout(request)
     return redirect('/Usuario/login')
- 
 
+@login_required(login_url='/Usuario/login')
 def actualizarusuario(request, user_id):
+    # obtener el usuario actual
     user = request.user
+
+    # si el método de la petición es POST, procesar los datos del formulario
     if request.method == 'POST':
         if request.POST.get('username') and request.POST.get('password') and request.POST.get('nombres') and request.POST.get('apellidos') and request.POST.get('email'):
             user= User.objects.get(id=user_id)
@@ -186,14 +192,39 @@ def actualizarusuario(request, user_id):
             #mensaje cuando actualice los datos
             messages.success(request, 'Datos actualizados correctamente.')
             return redirect(f"/Usuario/actualizar/{user.id}")
+        # obtener los datos del formulario
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        first_name = request.POST.get('nombres')
+        last_name = request.POST.get('apellidos')
+        email = request.POST.get('email')
+
+        # actualizar los datos del usuario
+        user = User.objects.get(id=user_id)
+        user.username = username
+        user.password = password
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.save()
+
+        # redirigir al usuario a la página de actualización de perfil
+        return redirect(f"/Usuario/actualizar/{user.id}")
+
+    # si el método de la petición es GET, mostrar el formulario de actualización de perfil
     else:
         # verificar si el usuario en sesión coincide con el usuario que se está actualizando
         if str(user.id) != str(user_id):
             # si no coincide, redireccionar al usuario a una página de error o a la página de inicio
-            return redirect('/Usuario/login')
+            return redirect('/Error/paginaerror')
         else:
             user= User.objects.filter(id=user_id)
+            # obtener los datos del usuario
+            user = User.objects.get(id=user_id)
+
+            # pasar los datos del usuario a la plantilla de actualización de perfil
             return render(request, 'Usuario/actualizar.html', {'user': user})
+
 
     
 
@@ -203,5 +234,9 @@ def borrarusuario(request,user_id):
     medico = User.objects.get(id=user_id)
     medico.delete()
     return redirect('/Usuario/insertar')
+
+def error(request):
+   return render(request,'Error/paginaerror.html')
+   
 
 #endregion
