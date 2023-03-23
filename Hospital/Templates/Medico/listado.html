@@ -51,12 +51,12 @@
 <script>
     function borrar1(id) {
         swal({
-                title: "Estas seguro que quieres borrar?",
-                text: "La informacion que borres no la puedes recuperar!",
-                icon: "warning",
-                buttons: ["Cancelar", true],
-                dangerMode: true,
-            })
+            title: "Estas seguro que quieres borrar?",
+            text: "La informacion que borres no la puedes recuperar!",
+            icon: "warning",
+            buttons: ["Cancelar", true],
+            dangerMode: true,
+        })
             .then((willDelete) => {
                 if (willDelete) {
                     location.href = "/Medico/borrar/" + id;

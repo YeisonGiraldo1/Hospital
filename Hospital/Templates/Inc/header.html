@@ -1,4 +1,4 @@
- {% load static %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@
             Medicos<i class="dropdown icon"></i>
             <div class="menu">
                 <a href="/Medico/listado" class="item">Listado de
-                        Medicos</a>
+                    Medicos</a>
                 <a href="/Medico/insertar" class="item">Registrar Medico</a>
             </div>
         </div>
@@ -43,14 +43,14 @@
             Hospitales<i class="dropdown icon"></i>
             <div class="menu">
                 <a href="/Hospital/listado" class="item">Listado de
-                        Hospitales</a>
+                    Hospitales</a>
                 <a href="/Hospital/insertar" class="item">Registrar Hospitales</a>
             </div>
         </div>
 
         {% if user.is_authenticated %}
 
-        <div class="ui dropdown item" style="margin-left: 925px;">
+        <div class="ui dropdown item" style="margin-left: 975px;">
             Perfil<i class="dropdown icon"></i>
             <div class="menu">
                 <a href="/Usuario/actualizar/{{user.id}}" class="item right">Editar Perfil</a>
@@ -59,10 +59,11 @@
         </div>
 
 
+        <a href="/Usuario/logout" class="item right">Logut</a>
 
 
 
-        <a href="/Usuario/logout" class="item right">Logut</a> {% else %}
+        {% else %}
 
 
 
@@ -82,12 +83,12 @@
 <script>
     function borrarusuario(id) {
         swal({
-                title: "Estas seguro que quieres borrar tu cuenta?",
-                text: "Si borras la cuenta, no podras recuperarla y deberas crear una nueva!",
-                icon: "warning",
-                buttons: ["Cancelar", true],
-                dangerMode: true,
-            })
+            title: "Estas seguro que quieres borrar tu cuenta?",
+            text: "Si borras la cuenta, no podras recuperarla y deberas crear una nueva!",
+            icon: "warning",
+            buttons: ["Cancelar", true],
+            dangerMode: true,
+        })
             .then((willDelete) => {
                 if (willDelete) {
                     location.href = "/Usuario/borrar/" + id;

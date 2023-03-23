@@ -4,14 +4,14 @@
 
 <div class="ui container">
     <h1 style="text-align: center;">Formulario Registro Medico</h1>
-    
+
     <form action="" method="POST" class="ui form">
         {% csrf_token %}
         <div class="four fields">
 
             <div class="field">
                 <label for="">Nombre Completo</label>
-                <input type="text" name="nombrecompleto" id=""  required>
+                <input type="text" name="nombrecompleto" id="" required>
             </div>
 
             <div class="field">
@@ -19,7 +19,7 @@
                 <input type="email" name="email" id="" required>
             </div>
 
-            
+
             <div class="field">
                 <label for="">Celular</label>
                 <input type="number" name="celular" id="" required>
@@ -59,7 +59,7 @@
 
 
 
-   <div class="three fields">
+        <div class="three fields">
 
             <div class="field">
                 <label for="">Fecha Nacimiento</label>
@@ -80,13 +80,13 @@
 
 
 
-<div style="text-align: center;">
-        <button class="ui red button">Guardar Medico</button>
-    </div>
+        <div style="text-align: center;">
+            <button class="ui red button">Guardar Medico</button>
+        </div>
 
     </form>
 
-   
+
 </div>
 
 

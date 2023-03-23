@@ -24,7 +24,8 @@
 
 
 
-            <div class="three fields">
+        <div class="two fields">
+
             <div class="field">
                 <label for="">Nivel</label>
                 <input type="text" name="nivel" id="" required>
@@ -34,14 +35,15 @@
                 <label for="">Telefono</label>
                 <input type="number" name="telefono" id="" required>
             </div>
+        </div>
 
-
+<div class="one field">
             <div class="field">
                 <label for="">Seleccionar Medico</label>
                 <select name="medico_id" id="">
                     {% for m in medicos %}
-<option value="{{ m.id }}">{{ m.NombreCompleto }}</option>
-{% endfor %}
+                    <option value="{{ m.id }}">{{ m.NombreCompleto }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -49,10 +51,10 @@
 
 
 
-<div style="text-align: center;">
-        <button class="ui red button">Guardar Hospital</button>
-        
-    </div>
+        <div style="text-align: center;">
+            <button class="ui red button">Guardar Hospital</button>
+
+        </div>
 
     </form>
 </div>
