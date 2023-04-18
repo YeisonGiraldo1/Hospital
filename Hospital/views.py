@@ -216,7 +216,7 @@ def actualizarusuario(request, user_id):
         # verificar si el usuario en sesión coincide con el usuario que se está actualizando
         if str(user.id) != str(user_id):
             # si no coincide, redireccionar al usuario a una página de error o a la página de inicio
-            return redirect('/Error/paginaerror')
+            return redirect('/Error/paginaerro')
         else:
             user= User.objects.filter(id=user_id)
             # obtener los datos del usuario
@@ -231,8 +231,8 @@ def actualizarusuario(request, user_id):
 
 
 def borrarusuario(request,user_id):
-    medico = User.objects.get(id=user_id)
-    medico.delete()
+    user = User.objects.get(id=user_id)
+    user.delete()
     return redirect('/Usuario/insertar')
 
 def error(request):
